@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/sahil-favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/sahil-favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/sahil-favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/sahil-favicon/site.webmanifest" />
+    <title>Sahil Dhawan — PMM Resume</title>
+    <style>
+      :root {
+        --bg: #f7fafc; /* page background */
+        --card: #ffffff; /* panels */
+        --ink: #1f2937; /* primary text */
+        --muted: #6b7280; /* secondary text */
+        --accent: #2b6cb0; /* deep blue accent */
+        --accent-soft: #e6f0fb; /* soft blue */
+        --rule: #e5e7eb; /* dividers */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font: 15px/1.6 "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+      }
+
+      .resume {
+        max-width: 1000px;
+        margin: 24px auto;
+        padding: 0 16px;
+        display: grid;
+        grid-template-columns: 290px 1fr;
+        gap: 20px;
+      }
+
+      /* Left rail */
+      aside {
+        background: var(--card);
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        padding: 22px;
+        position: sticky;
+        top: 16px;
+        align-self: start;
+      }
+      .brand {
+        display: grid;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .name {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+      .title {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .section-title {
+        margin: 20px 0 10px;
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 1.1px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .meta-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .meta-list li {
+        margin: 6px 0;
+        color: var(--ink);
+      }
+      .meta-list a {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--rule);
+      }
+      .meta-list a:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      .skill {
+        margin: 10px 0 12px;
+      }
+      .skill .label {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+      }
+      .bar {
+        height: 8px;
+        background: var(--accent-soft);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-top: 6px;
+      }
+      .bar > span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), #4f46e5);
+      }
+
+      /* Main column */
+      main {
+        display: grid;
+        gap: 18px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        padding: 22px;
+      }
+
+      .heading {
+        display: grid;
+        gap: 10px;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 14px;
+        margin-bottom: 6px;
+      }
+      .heading .role {
+        font-weight: 800;
+        font-size: 20px;
+      }
+      .heading .summary {
+        color: var(--muted);
+      }
+
+      h3 {
+        margin: 0 0 6px;
+        font-size: 16px;
+      }
+      .sub {
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      .items {
+        display: grid;
+        gap: 14px;
+      }
+      .item h3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .item h3 .place {
+        font-weight: 800;
+      }
+      .item h3 .tenure {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .bullets {
+        margin: 6px 0 0 18px;
+        padding: 0;
+      }
+      .bullets li {
+        margin: 6px 0;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: #1e3a8a;
+        font-weight: 600;
+        font-size: 12px;
+        margin: 4px 6px 0 0;
+      }
+
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: white;
+        }
+        .resume {
+          max-width: 100%;
+          margin: 0;
+          padding: 0;
+          grid-template-columns: 32% 1fr;
+          gap: 14px;
+        }
+        aside,
+        .card {
+          border-color: #ddd;
+        }
+        .pill {
+          background: #eaf0ff;
+          color: #0b3b91;
+        }
+      }
+
+      /* Small screens */
+      @media (max-width: 820px) {
+        .resume {
+          grid-template-columns: 1fr;
+        }
+        aside {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="resume" role="document" aria-label="Resume for Sahil Dhawan">
+      <!-- LEFT RAIL -->
+      <aside aria-label="Profile sidebar">
+        <div class="brand">
+          <div class="name">SAHIL DHAWAN</div>
+          <div class="title">Product–Marketing Technologist (PMM‑oriented)</div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Profile</div>
+          <p>
+            Hybrid technologist who turns complex CX platforms into clear
+            product stories. Ex‑Oracle (Product Engineering) → Adobe
+            (AEP/AJO/Target). Targeting Product Marketing Manager roles.
+          </p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Contact</div>
+          <ul class="meta-list">
+            <li>Delhi‑NCR, India</li>
+            <li><a href="tel:+917696269141">+91 76962 69141</a></li>
+            <li>
+              <a href="mailto:sahildhawan22@gmail.com"
+                >sahildhawan22@gmail.com</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/sahild95"
+                target="_blank"
+                rel="noreferrer noopener"
+                >linkedin.com/in/sahild95</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Skills</div>
+          <div class="skill">
+            <div class="label">
+              <span>Positioning & Messaging</span><span>90%</span>
+            </div>
+            <div class="bar" aria-hidden="true">
+              <span style="width: 90%"></span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="label">
+              <span>GTM & Launch Planning</span><span>85%</span>
+            </div>
+            <div class="bar"><span style="width: 85%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="label">
+              <span>ICP / Persona Research</span><span>80%</span>
+            </div>
+            <div class="bar"><span style="width: 80%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="label">
+              <span>AEP / AJO (Journeys, PQL)</span><span>90%</span>
+            </div>
+            <div class="bar"><span style="width: 90%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="label">
+              <span>Adobe Target & Edge</span><span>80%</span>
+            </div>
+            <div class="bar"><span style="width: 80%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="label">
+              <span>Web SDK (client/hybrid/server)</span><span>85%</span>
+            </div>
+            <div class="bar"><span style="width: 85%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="label">
+              <span>JavaScript / React</span><span>80%</span>
+            </div>
+            <div class="bar"><span style="width: 80%"></span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Certification</div>
+          <p>Oracle Certified Java SE 7 Associate</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Interests</div>
+          <p>Indie/alt‑rock • writing • clean UX</p>
+        </div>
+      </aside>
+
+      <!-- MAIN COLUMN -->
+      <main>
+        <section class="card">
+          <div class="heading">
+            <div class="role">
+              Product‑Marketing technologist bridging Product (Oracle) × CX
+              (Adobe)
+            </div>
+            <div class="summary">
+              I translate complex platforms into crisp narratives and GTM that
+              drive adoption. Comfortable partnering with Product, Engineering,
+              Sales, and Marketing.
+            </div>
+            <div class="stack" aria-label="Core strengths">
+              <span class="pill">Product storytelling</span>
+              <span class="pill">GTM planning</span>
+              <span class="pill">Competitive analysis</span>
+              <span class="pill">ICP & personas</span>
+              <span class="pill">Journeys & personalization</span>
+              <span class="pill">Identity/ECID</span>
+            </div>
+          </div>
+
+          <div class="items" aria-label="Experience">
+            <article class="item">
+              <h3>
+                <span class="place">Adobe — Technical Consultant II</span>
+                <span class="tenure">2024–Present · Noida</span>
+              </h3>
+              <p class="sub">AEP · AJO · Target · Web SDK</p>
+              <ul class="bullets">
+                <li>
+                  Designed <strong>identityMap/ECID</strong> strategies and
+                  journey guardrails; aligned product, marketing & data teams
+                  via decision logs and runbooks.
+                </li>
+                <li>
+                  Implemented <strong>Web SDK</strong> patterns
+                  (client/hybrid/server) and authored Edge
+                  <code>interact</code> flows blending
+                  <strong>AJO + Target</strong> for real‑time personalization.
+                </li>
+                <li>
+                  Converted solutions into <strong>business outcomes</strong>:
+                  journey maps, success metrics, and demo narratives for exec &
+                  product stakeholders.
+                </li>
+                <li>
+                  Wrote <strong>competitive briefs</strong> (AJO vs
+                  SFMC/Braze/Iterable) and reusable field playbooks (identity
+                  patterns, consent modeling, PQL).
+                </li>
+              </ul>
+            </article>
+
+            <article class="item">
+              <h3>
+                <span class="place"
+                  >Oracle (NetSuite) — Platform Software Engineer II</span
+                >
+                <span class="tenure">2021–2024 · Bengaluru</span>
+              </h3>
+              <p class="sub">SuiteScript 2.x · ES6 · Jasmine</p>
+              <ul class="bullets">
+                <li>
+                  Shipped <strong>Lot & Serial Traceability</strong> features
+                  across returns/receipts/transfers with tests; demoed releases
+                  and prioritized backlog with PMs.
+                </li>
+                <li>
+                  Strengthened the <strong>product narrative</strong> with
+                  customer‑impact scenarios used by stakeholders to clarify
+                  value.
+                </li>
+              </ul>
+            </article>
+
+            <article class="item">
+              <h3>
+                <span class="place">CipherCloud — Software Engineer (UI)</span>
+                <span class="tenure">2020–2021 · Bengaluru</span>
+              </h3>
+              <p class="sub">Backbone · React · ES6</p>
+              <ul class="bullets">
+                <li>
+                  Built CASB dashboard components incl.
+                  <strong>Anomaly Detection</strong> views; standardized
+                  data‑table patterns across modules.
+                </li>
+                <li>
+                  Led <strong>freemium onboarding</strong> walkthroughs
+                  (Intro.js) to boost early feature discovery.
+                </li>
+              </ul>
+            </article>
+
+            <article class="item">
+              <h3>
+                <span class="place"
+                  >Hitachi Consulting — Software Consultant II</span
+                >
+                <span class="tenure">2017–2020 · Hyderabad</span>
+              </h3>
+              <p class="sub">Angular dashboards · Dynamic forms</p>
+              <ul class="bullets">
+                <li>
+                  Delivered Angular dashboards and
+                  <strong>dynamic form generation</strong> from JSON schemas for
+                  school ops.
+                </li>
+                <li>
+                  Awarded <strong>Delivery Excellence</strong> (MGRM project).
+                </li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>PMM / GTM Projects (Portfolio)</h3>
+          <ul class="bullets">
+            <li>
+              <strong>GrowthX (bootcamp)</strong> — ICPs, pain‑point maps, value
+              props & messaging frameworks, launch outlines for SaaS features.
+            </li>
+            <li>
+              <strong>AJO vs SFMC briefs</strong> — Differentiation,
+              ideal‑customer fit, integration story, real‑time decisioning
+              guardrails.
+            </li>
+            <li>
+              <strong>Cruise Personalization POC (React)</strong> — Journey
+              narrative (browse → wait window → on‑site message) with targeting
+              logic & success measures.
+            </li>
+          </ul>
+          <p class="sub">
+            Artifacts available on request (one‑pagers, GTM outlines, solution
+            narratives).
+          </p>
+        </section>
+
+        <section class="card">
+          <h3>Education & Certifications</h3>
+          <ul class="bullets">
+            <li>
+              <strong>B.E., Computer Science Engineering</strong> — Chitkara
+              University (2013–2017)
+            </li>
+            <li><strong>Oracle Certified Java SE 7 Associate</strong></li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
